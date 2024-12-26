@@ -9,7 +9,7 @@ Animal* createRandomAnimal();
 int main() {
 	Zoo* zoo = new Zoo();
 
-	cout << "How many animals are in the zoo? (10 animals max): ";
+	cout << "How many animals are in the zoo? (0~10): ";
 	int num;
 	cin >> num;
 
@@ -29,6 +29,7 @@ int main() {
 		Animal* animal = createRandomAnimal();
 		zoo->addAnimal(animal);
 	}
+	cout << num << " Animals created." << endl;
 
 	// animals make sound
 	zoo->performActions();

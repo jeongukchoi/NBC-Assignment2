@@ -5,7 +5,7 @@ void Dog::makeSound() {
 }
 
 Dog::~Dog() {
-	// cout << "Dog destructor\n";
+	 //cout << "Destructing: " << this << endl;
 }
 
 void Cat::makeSound() {
@@ -13,7 +13,7 @@ void Cat::makeSound() {
 }
 
 Cat::~Cat() {
-	// cout << "Cat destructor\n";
+	 //cout << "Destructing: " << this << endl;
 }
 
 void Cow::makeSound() {
@@ -21,5 +21,5 @@ void Cow::makeSound() {
 }
 
 Cow::~Cow() {
-	// cout << "Cow destructor\n";
+	 //cout << "Destructing: " << this << endl;
 }

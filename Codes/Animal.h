@@ -8,7 +8,7 @@ class Animal {
 public:
 	virtual void makeSound() = 0;
 	virtual ~Animal() {
-		 // cout << "Animal destructor\n";
+		 //cout << "Destructing (Animal): " << this << endl;
 	}
 };
 

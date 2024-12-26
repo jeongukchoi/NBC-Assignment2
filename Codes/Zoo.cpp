@@ -21,8 +21,9 @@ Zoo::~Zoo() {
     // Call destructor on each animal in the array when Zoo destructor is performed
     for (Animal* a : animals) {
         if (a != nullptr) {
+             //cout << "Destructing (from Zoo): " << a << endl;
             delete a;
         }
     }
-     // cout << "Zoo destructor\n";
+    // cout << "Zoo destructor\n";
 }

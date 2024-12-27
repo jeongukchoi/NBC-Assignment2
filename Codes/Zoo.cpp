@@ -2,7 +2,7 @@
 
 // Add an Animal pointer to the array
 void Zoo::addAnimal(Animal* animal) {
-    if (animalCount < kZooSize) {
+    if (animalCount < kZooCapacity) {
         animals[animalCount++] = animal;
     }
     else {
@@ -21,9 +21,7 @@ Zoo::~Zoo() {
     // Call destructor on each animal in the array when Zoo destructor is performed
     for (Animal* a : animals) {
         if (a != nullptr) {
-             //cout << "Destructing (from Zoo): " << a << endl;
             delete a;
         }
     }
-    // cout << "Zoo destructor\n";
 }

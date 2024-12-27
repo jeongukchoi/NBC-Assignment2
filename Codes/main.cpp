@@ -1,35 +1,27 @@
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 #include "Zoo.h"
 #include "Animal.h"
 
 Animal* createRandomAnimal();
+int getInputNum(int max);
 
 int main() {
 	Zoo* zoo = new Zoo();
 
-	cout << "How many animals are in the zoo? (0~10): ";
-	int num;
-	cin >> num;
+	int numAnimals = getInputNum(kZooCapacity);
 
-	// Clear the buffer and ask again until input is valid
-	while (!cin.good() || num < 0 || num > kZooSize) {
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		cout << "Please enter a valid number. (0~10)\n";
-		cin >> num;
-	}
-	
 	// initialize random seed
-	srand(time(NULL));
+	srand(time(0));
 
 	// fill Zoo with random animals
-	for (int i = 0; i < num; i++) {
+	for (int i = 0; i < numAnimals; i++) {
 		Animal* animal = createRandomAnimal();
 		zoo->addAnimal(animal);
 	}
-	cout << num << " Animals created." << endl;
+	cout << numAnimals << " Animals created." << endl;
 
 	// animals make sound
 	zoo->performActions();
@@ -53,5 +45,47 @@ Animal* createRandomAnimal() {
 
 	case 2:
 		return new Cow();
+
+	default:
+		return new Dog();
 	}
+}
+
+// Get input that specifies the number of Animals
+int getInputNum(int max) {
+	bool valid = true;
+	string inStr;
+	do {
+		if (!valid) cout << "INPUT NOT VALID!" << endl;
+
+		// reset the flags
+		valid = true;
+		cin.clear();
+
+		// Read input into a string
+		cout << "How many animals are in the zoo? (0~" << max << ")" << endl;
+		getline(cin, inStr);
+
+		// 1. Invalid if input is not received OR any cin error flag is set
+		if (inStr.empty() || !cin.good()) {
+			valid = false;
+			continue;
+		}
+
+		// 2. Invalid if input contains something that's not a digit (including minus)
+		for (int i = 0; i < inStr.length(); i++) {
+			if (!isdigit(inStr[i])) {
+				valid = false;
+				break;
+			}
+		}
+	} while (!valid);
+
+	int num = stoi(inStr);
+	if (num > max) {
+		cout << "Maximum capacity at the zoo: " << max << ". Creating " << max << " Animals." << endl;
+		num = max;
+	}
+
+	return num;
 }

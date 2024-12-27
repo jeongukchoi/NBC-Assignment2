@@ -3,11 +3,11 @@
 
 #include "Animal.h"
 
-const int kZooSize = 10;
+const int kZooCapacity = 100;
 
 class Zoo {
 private:
-    Animal* animals[kZooSize]; // pointer array to save the Animal objects
+    Animal* animals[kZooCapacity] = { nullptr }; // pointer array to save the Animal objects
     int animalCount = 0; // current number of Animals in the array
 public:
     // Add an Animal pointer to the array
